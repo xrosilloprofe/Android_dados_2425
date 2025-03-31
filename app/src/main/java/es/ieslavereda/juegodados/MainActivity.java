@@ -1,17 +1,23 @@
 package es.ieslavereda.juegodados;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
+    private Button lanzarButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +30,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         imageView = findViewById(R.id.imageView);
-        imageView.setImageResource(R.mipmap.ic_cuatro_foreground);
+        lanzarButton = findViewById(R.id.lanzarButton);
+//        imageView.setImageResource(R.mipmap.ic_cuatro_foreground);
+        Random numeroRandom = new Random();
+
+        lanzarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int numero = numeroRandom.nextInt(6);
+                imageView.setImageResource(Dado.values()[numero].getImagen());
+            }
+        });
+
 
     }
 }
